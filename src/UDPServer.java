@@ -6,7 +6,7 @@ class UDPServer {
 	private static final int SELECTED_PORT = 6000;
 	private DatagramSocket serverSocket;
 
-	public UDPServer(){
+	private UDPServer() {
 		// open the datagram socket
 		try {
 			serverSocket = new DatagramSocket(SELECTED_PORT);
@@ -22,7 +22,7 @@ class UDPServer {
 		while(true) {
 			// set up variables for holding the data for input/output
 			byte[] receiveData = new byte[1024];
-			byte[] sendData = new byte[1024];
+			byte[] sendData;
 
 			// read a datagram packet from the socket
 			DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
@@ -55,12 +55,12 @@ class UDPServer {
 				serverSocket.send(sendPacket);
 				System.out.println("Replied to Client: " + replySentence + "\n");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
-	public static void main(String args[]) {
+
+	public static void main(String[] args) {
 		new UDPServer();
 	}
 }

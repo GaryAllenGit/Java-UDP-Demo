@@ -6,7 +6,7 @@ class UDPClient {
 	private static final int SELECTED_PORT = 6000;
 	private DatagramSocket clientSocket;
 
-	public UDPClient(){
+	private UDPClient() {
 		String stringToSend = "Hello World";
 
 		// open the datagram socket
@@ -25,7 +25,7 @@ class UDPClient {
 			InetAddress IPAddress = InetAddress.getByName("localhost");
 
 			// set up variables for holding the data for input/output
-			byte[] sendData = new byte[1024];
+			byte[] sendData;
 			byte[] receiveData = new byte[1024];
 
 			// create the data we want to send to the server
@@ -51,15 +51,13 @@ class UDPClient {
 			// close the connection
 			clientSocket.close();
 
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-
 		} catch (IOException e) {
 			e.printStackTrace();
+
 		}
 	}
 
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) {
 		new UDPClient();
 	}
 }
